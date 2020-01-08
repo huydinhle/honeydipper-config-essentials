@@ -66,7 +66,7 @@ systems:
           URL: 'https://api.github.com/orgs/{{ .ctx.org }}/repos'
           method: POST
           content:
-            name: {{ .ctx.name }}
+            name: '{{ .ctx.name }}'
         export:
           repoid: '{{ b64dec .data.json.id }}'
 
