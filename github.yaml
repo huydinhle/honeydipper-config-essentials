@@ -65,9 +65,9 @@ systems:
         parameters:
           URL: 'https://api.github.com/orgs/{{ .ctx.org }}/repos'
           method: POST
-          content: '{{ dict "body" .ctx.reponame | toJson }}'
+          content: '{{ dict "body" .ctx.name | toJson }}'
         export:
-          repoId: '{{ b64dec .data.json.id }}'
+          repoid: '{{ b64dec .data.json.id }}'
 
       addRepoToInstallation:
         target:
