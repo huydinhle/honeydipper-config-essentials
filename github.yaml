@@ -68,7 +68,7 @@ systems:
           content:
             name: '{{ .ctx.name }}'
         export:
-          repoid: '{{ b64dec .data.json.id }}'
+          repoid: '{{ .data.json.id }}'
 
       addRepoToInstallation:
         target:
