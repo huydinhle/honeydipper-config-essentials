@@ -76,7 +76,7 @@ systems:
           function: api
         parameters:
           # URL: 'https://api.github.com/user/installations/{{ .ctx.installationid | int | toString }}/repositories/{{ .ctx.repoid | int | toString }}'
-          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid | int | toString }}/repositories/{{ .ctx.repoid }}'
+          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid | int | toString }}/repositories/{{ .ctx.repoid | int64 }}'
           method: PUT
           header:
             Authorization: token {{ .sysData.oauth_token }}
