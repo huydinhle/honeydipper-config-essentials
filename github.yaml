@@ -58,6 +58,25 @@ systems:
             - name: resource_path
               description: This field is used as the path portion of the API call url
 
+      createRepo:
+        target:
+          system: github
+          function: api
+        parameters:
+          URL: 'https://api.github.com/orgs/{{ .ctx.org }}/repos'
+          method: POST
+          content: '{{ dict "body" .ctx.reponame | toJson }}'
+        export:
+          repoId: '{{ b64dec .data.json.id }}'
+
+      addRepoToInstallation:
+        target:
+          system: github
+          function: api
+        parameters:
+          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid }}/repositories/{{ .ctx.repoid}}'
+          method: PUT
+
       createStatus:
         target:
           system: github
