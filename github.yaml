@@ -75,7 +75,7 @@ systems:
           system: github
           function: api
         parameters:
-          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid }}/repositories/{{ .ctx.repoid }}'
+          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid | toString }}/repositories/{{ .ctx.repoid | toString }}'
           method: PUT
 
       createStatus:
