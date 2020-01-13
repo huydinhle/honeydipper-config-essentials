@@ -67,7 +67,7 @@ systems:
           method: POST
           content:
             name: '{{ .ctx.name }}'
-            private: true
+            private: '{{ .ctx.private }}'
         export:
           repoid: '{{ .data.json.id | int | toString }}'
 
@@ -76,7 +76,7 @@ systems:
           system: github
           function: api
         parameters:
-          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid | int | toString }}/repositories/{{ .ctx.repoid }}'
+          URL: 'https://api.github.com/user/installations/{{ .ctx.installationid }}/repositories/{{ .ctx.repoid }}'
           method: PUT
           header:
             Authorization: token {{ .sysData.oauth_token }}
