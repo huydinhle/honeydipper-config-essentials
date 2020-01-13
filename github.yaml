@@ -69,7 +69,7 @@ systems:
             name: '{{ .ctx.name }}'
             private: '{{ .ctx.private }}'
         export:
-          repoid: '{{ .data.json.id | int | toString }}'
+          repoid: '{{ .data.json.id }}'
 
       addRepoToInstallation:
         target:
