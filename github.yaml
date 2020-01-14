@@ -71,6 +71,35 @@ systems:
         export:
           repoid: '{{ .data.json.id | int }}'
 
+        description: >
+          This function will create a github repository for your org
+
+        meta:
+          inputs:
+            - name: org
+              description: the name of your org
+            - name: name
+              description: The name of your repository
+
+          notes:
+            - See below for example
+            - example: |
+                ---
+                rules:
+                  - when:
+                      driver: webhook
+                      if_match:
+                        url: /createrepo
+                    do:
+                      call_workflow: github_create_repo
+
+                workflows:
+                  github_create_repo:
+                    call_function: github.createRepo
+                    with:
+                      org: testing
+                      name: testing-repo
+
       addRepoToInstallation:
         target:
           system: github
@@ -82,6 +111,35 @@ systems:
             Authorization: token {{ .sysData.oauth_token }}
             Accept: application/vnd.github.v3+json, application/vnd.github.machine-man-preview+json
             Content-Type: application/json; charset=utf-8
+
+        description: >
+          This function will add a repo into an installed github app
+
+        meta:
+          inputs:
+            - name: installation_id
+              description: The installation_id of your github app
+            - name: repoid
+              description: The Id of your github repository
+
+          notes:
+            - See below for example
+            - example: |
+                ---
+                rules:
+                  - when:
+                      driver: webhook
+                      if_match:
+                        url: /addrepoinstallation
+                    do:
+                      call_workflow: github_add_repo_installation
+
+                workflows:
+                  github_add_repo_installation:
+                    call_function: github.addRepoToInstallation
+                    with:
+                      repoid: 12345678
+                      intallationid: 12345678
 
       createStatus:
         target:
