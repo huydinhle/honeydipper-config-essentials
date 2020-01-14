@@ -66,8 +66,8 @@ systems:
           URL: 'https://api.github.com/orgs/{{ .ctx.org }}/repos'
           method: POST
           content:
-            name: '{{ .ctx.name }}'
-            private: '{{ .ctx.private }}'
+            name: $ctx.name
+            private: $ctx.private,"false"
         export:
           repoid: '{{ .data.json.id | int }}'
 
